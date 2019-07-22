@@ -3,10 +3,59 @@
  <i><%= @place.address %></i>
  <br/><br/>
  <p><%= @place.description %></p>
- <div class="float-right">
-  <% if current_user && current_user == @place.user %>
- <%= link_to 'Edit', edit_place_path(@place), class: 'btn btn-primary' %>
- <%= link_to 'Destroy', place_path(@place), method: :delete, data: {confirm: 'Are you sure you want to delete this?'}, class: 'btn btn-danger' %>
- <% end %>
- </div>
-</div>
+
+ 
+    
+     <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 300px;
+      }
+      /* Optional: Makes the sample page fill the window. */   
+     </style>
+     </head>
+     <body>
+     <div id="map"></div>
+    
+
+  
+      <% if @place.latitude.present? && @place.longitude.present? %>
+      <script>
+      function initMap() {
+        var myLatLng = {lat: <%= @place.latitude %>, lng: <%= @place.longitude %>};
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          
+        });
+
+        var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+        var beachMarker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          icon: image
+        });
+      }
+      </script>
+      <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC179PSyZXuRK8_OMWeDiOj6YnUUJX2AjE&callback=initMap">
+      </script>
+      <div id="map"></div>
+    <% end %>
+
+     <br />
+
+    <div class="float-right">
+     <% if current_user && current_user == @place.user %>
+     <%= link_to 'Edit', edit_place_path(@place), class: 'btn btn-primary' %>
+     <%= link_to 'Destroy', place_path(@place), method: :delete, data: {confirm: 'Are you sure you want to delete this?'}, class: 'btn btn-danger' %>
+    <% end %>
+     </div>
+     </div>
+
