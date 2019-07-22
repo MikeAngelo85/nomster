@@ -74,4 +74,8 @@ end
 
 gem "font-awesome-rails"
 
+gem "geocoder"
+
+gem "figaro"
+
 
