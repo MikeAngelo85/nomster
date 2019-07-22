@@ -1,3 +1,4 @@
 class Comment < ApplicationRecord
-  rake db:migrate
+  belongs_to :user
+  belongs_to :place
 end
