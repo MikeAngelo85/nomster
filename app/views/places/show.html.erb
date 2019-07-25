@@ -125,7 +125,24 @@
     </blockquote>
   </div>
 <% end %>
+</div>
+<div class="clear"></div>
+  <hr />
 
+  <h2 class="float-left">Photos</h2>
+  <br /><br class="clear">
+  <div class="row col-10 offset-1">
+    <% @place.photos.each do |photo| %>
+      <div class="col-12 col-sm-6">
+        <blockquote class="photo-display">
+          <%= image_tag photo.picture, class: 'show-image-size' %>
+          <p><% if photo.caption.present? %>
+            <%= photo.caption %></p>
+          <% end %>
+        </blockquote>
+      </div>
+    <% end %>
+  </div>
 
 
 
