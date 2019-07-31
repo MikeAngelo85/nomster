@@ -112,7 +112,7 @@
 </button>
 </div>
 <div class="clear"></div>
-  <h1>Comments</h1>
+<h1>Comments</h1>
 <div class="row">
 <% @place.comments.each do |comment| %>
    <div class="col-12 col-sm-6">
@@ -133,7 +133,7 @@
     <% @place.photos.each do |photo| %>
       <div class="col-12 col-sm-6">
         <blockquote class="photo-display">
-          <%= image_tag photo.picture.url, class: 'show-image-size' %>
+          <%= image_tag photo.picture.url.to_s, class: 'show-image-size' %>
           <p><% if photo.caption.present? %>
             <%= photo.caption %></p>
           <% end %>
